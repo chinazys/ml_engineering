@@ -1,24 +1,65 @@
 # ML Engineering Labs
 
-Minimal repository layout for the current Lab 1, based on assignment requirements.
+## Lab 1: CIFAR-10 Image Classification Pipeline
 
-## Repository Structure
-- `docs/requirements/` - assignment PDFs.
-- `labs/lab01/notebooks/` - Lab 1 notebook.
-- `labs/lab01/configs/` - Lab 1 config files.
-- `labs/lab01/src/` - Lab 1 reusable Python code.
-- `labs/lab01/artifacts/` - saved models, logs, metrics.
-- `labs/lab01/report/` - Lab 1 report.
+A complete deep learning training pipeline for CIFAR-10 image classification using PyTorch.
 
-## Lab 1 Requirements Checklist
-- Choose dataset and split into train/validation/test.
-- Implement full training pipeline: ingestion, training loop, evaluation, artifact collection.
-- Evaluate with multiple metrics (accuracy, precision, recall, F1).
-- Use configuration files (not hardcoded values).
-- Use logging module instead of print for pipeline events.
-- Use Poetry and code quality tools (mypy, ruff, black, isort).
-- Keep clean commit history and include lab report.
+### Dataset
+- **CIFAR-10**: 60,000 32×32 color images across 10 classes
+- Split: 40,000 train / 10,000 validation / 10,000 test
 
-## Current Lab 1 Assets
-- Notebook: `labs/lab01/notebooks/ml_engineering_lab_01.ipynb`
-- Requirements PDF: `docs/requirements/lab01_requirements.pdf`
+### Results
+| Metric    | Value  |
+|-----------|--------|
+| Test Loss | 0.8000 |
+| Accuracy  | 0.7233 |
+| Precision | 0.7218 |
+| Recall    | 0.7233 |
+| F1 Score  | 0.7182 |
+
+### Repository Structure
+```
+├── pyproject.toml                        # Poetry dependencies & tool config
+├── poetry.lock
+├── docs/requirements/                    # Assignment PDFs
+├── labs/lab01/
+│   ├── configs/config.yaml               # Pipeline configuration (YAML)
+│   ├── notebooks/ml_engineering_lab_01.ipynb  # Main training notebook
+│   └── report/                           # Lab report
+```
+
+### Setup
+```bash
+# Requires Python ~3.11 and Poetry
+poetry install --no-root
+```
+
+### Key Features
+- Config-driven pipeline (YAML) — no hardcoded values
+- Python `logging` module throughout (no `print`)
+- Data augmentation (random horizontal flip, random crop)
+- CNN model with BatchNorm and Dropout
+- Best model checkpoint saving
+- Full evaluation metrics: accuracy, precision, recall, F1
+- Poetry for dependency management
+- Code quality tools: mypy, ruff, black, isort
+
+### Code Quality
+
+Notebook code was exported and verified with all configured linters/formatters:
+
+```
+$ isort --check --profile black --line-length 100 nb_check.py
+✓ No issues found
+
+$ ruff check --ignore E402 nb_check.py
+All checks passed!
+
+$ mypy --ignore-missing-imports nb_check.py
+Success: no issues found in 1 source file
+```
+
+- **isort**: imports sorted (stdlib → third-party → local), black-compatible profile
+- **ruff**: all rules pass (E402 excluded — expected in notebook-exported scripts)
+- **mypy**: full type-check pass with type hints on all functions
+- **black**: line length 100; only cosmetic blank-line diffs from notebook cell boundaries

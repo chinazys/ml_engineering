@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "ml-engineering-lab01"
+description = "CIFAR-10 image classification training pipeline"
+authors = ["Yehor <yehor.chukanov@cs.khpi.edu.ua>"]
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "~3.11"
+torch = {version = ">=2.5.0", source = "pytorch"}
+torchvision = {version = ">=0.20.0", source = "pytorch"}
+tqdm = ">=4.66"
+matplotlib = ">=3.8"
+numpy = ">=1.24,<2.0"
+pyyaml = ">=6.0"
+pandas = ">=2.0"
+requests = ">=2.31"
+scikit-learn = ">=1.3"
+
+[tool.poetry.group.dev.dependencies]
+mypy = ">=1.8"
+ruff = ">=0.2"
+black = ">=24.0"
+isort = ">=5.13"
+ipykernel = ">=6.29"
+
+[[tool.poetry.source]]
+name = "pytorch"
+priority = "supplemental"
+url = "https://download.pytorch.org/whl/cu128"
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

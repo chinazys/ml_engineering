@@ -1,0 +1,20 @@
+# Lab 01 - CIFAR-10 Training Pipeline Configuration
+
+data:
+  dataset_url: "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+  data_dir: "data"
+  val_size: 0.2
+  random_state: 42
+
+model:
+  n_classes: 10
+
+training:
+  batch_size: 128
+  num_workers: 4
+  num_epochs: 20
+  learning_rate: 0.001
+
+artifacts:
+  save_dir: "artifacts"
+  best_model_filename: "best_model.pth"
