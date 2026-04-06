@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "ml-engineering-lab01"
-description = "CIFAR-10 image classification training pipeline"
+name = "ml-engineering-lab02"
+description = "CIFAR-10 automated dataset extension pipeline"
 authors = ["Yehor <yehor.chukanov@cs.khpi.edu.ua>"]
 version = "0.1.0"
 

@@ -26,6 +26,10 @@ A complete deep learning training pipeline for CIFAR-10 image classification usi
 │   ├── configs/config.yaml               # Pipeline configuration (YAML)
 │   ├── notebooks/ml_engineering_lab_01.ipynb  # Main training notebook
 │   └── report/                           # Lab report
+├── labs/lab02/
+│   ├── configs/config.yaml               # Batch selection & experiment config
+│   ├── notebooks/ml_engineering_lab_02.ipynb  # Dataset extension notebook
+│   └── report/                           # Lab report
 ```
 
 ### Setup
@@ -63,3 +67,29 @@ Success: no issues found in 1 source file
 - **ruff**: all rules pass (E402 excluded — expected in notebook-exported scripts)
 - **mypy**: full type-check pass with type hints on all functions
 - **black**: line length 100; only cosmetic blank-line diffs from notebook cell boundaries
+
+---
+
+## Lab 2: Automating Dataset Extension
+
+Configuration-driven batch selection to study how training data volume affects model performance.
+
+### Approach
+- Select which CIFAR-10 batches (1–5) go to training vs validation via `config.yaml`
+- Test set is always the static `test_batch` (10,000 images)
+- Run 4 experiments with increasing training data (1→4 batches)
+
+### Results
+| Experiment | Train Size | Accuracy | Precision | Recall | F1 |
+|---|---|---|---|---|---|
+| 1_train_1_val | 10,000 | 0.5816 | 0.5795 | 0.5816 | 0.5767 |
+| 2_train_1_val | 20,000 | 0.5972 | 0.6000 | 0.5972 | 0.5843 |
+| 3_train_1_val | 30,000 | 0.6759 | 0.6719 | 0.6759 | 0.6678 |
+| 4_train_1_val | 40,000 | 0.7158 | 0.7126 | 0.7158 | 0.7110 |
+
+### Key Features
+- Config-driven experiment definitions — add experiments without code changes
+- Dynamic train/val sets with static test set for fair comparison
+- Automated multi-experiment runner with results aggregation
+- Performance comparison charts (matplotlib)
+- Same code quality standards as Lab 1 (isort, ruff, mypy all pass)
