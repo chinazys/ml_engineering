@@ -1,0 +1,39 @@
+# Lab 02 - Automating Dataset Extension Configuration
+
+data:
+  data_dir: "data"
+  cifar_subdir: "cifar-10-batches-py"
+  test_batch: "test_batch"
+  random_state: 42
+
+model:
+  n_classes: 10
+
+training:
+  batch_size: 128
+  num_workers: 4
+  num_epochs: 20
+  learning_rate: 0.001
+
+artifacts:
+  save_dir: "artifacts/lab02"
+  best_model_filename: "best_model.pth"
+
+# Each experiment selects which CIFAR-10 batches (1-5) go to train vs validation.
+# The test set is always the static test_batch.
+experiments:
+  - name: "1_train_1_val"
+    train_batches: [1]
+    val_batches: [2]
+
+  - name: "2_train_1_val"
+    train_batches: [1, 2]
+    val_batches: [3]
+
+  - name: "3_train_1_val"
+    train_batches: [1, 2, 3]
+    val_batches: [4]
+
+  - name: "4_train_1_val"
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
