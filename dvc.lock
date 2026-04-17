@@ -29,8 +29,8 @@ stages:
       nfiles: 8
     - path: labs/lab03/scripts/train.py
       hash: md5
-      md5: 09c0ab46cbdaab22e3246b84199835ba
-      size: 4579
+      md5: 6e368e07f2b49f13ec96ffe35725de34
+      size: 4578
     - path: labs/lab03/src/data.py
       hash: md5
       md5: b9be7a3d9d6ac754ec5802b5f774a626
@@ -67,14 +67,14 @@ stages:
     outs:
     - path: artifacts/lab03/best_model.pth
       hash: md5
-      md5: 70bfe84a0889d745be5ef34b08e7f4f4
+      md5: 6b7bddd82b65573e9c74e58e8916ea40
       size: 8785461
   evaluate:
     cmd: PYTHONPATH=labs/lab03 .venv/bin/python labs/lab03/scripts/evaluate.py
     deps:
     - path: artifacts/lab03/best_model.pth
       hash: md5
-      md5: 70bfe84a0889d745be5ef34b08e7f4f4
+      md5: 6b7bddd82b65573e9c74e58e8916ea40
       size: 8785461
     - path: data/cifar-10-batches-py
       hash: md5
@@ -83,8 +83,8 @@ stages:
       nfiles: 8
     - path: labs/lab03/scripts/evaluate.py
       hash: md5
-      md5: fefc6946038eb5a682f10920f6ca4f19
-      size: 3765
+      md5: aac7fd7b167f9bc2035e1f3dfddb47f4
+      size: 3764
     - path: labs/lab03/src/data.py
       hash: md5
       md5: b9be7a3d9d6ac754ec5802b5f774a626
@@ -121,5 +121,5 @@ stages:
     outs:
     - path: labs/lab03/metrics.json
       hash: md5
-      md5: 99364f86a9be5af27f7131fe8476e863
+      md5: 9d8864e2da7e94c54bef76c6de04ba14
       size: 106

@@ -30,6 +30,12 @@ A complete deep learning training pipeline for CIFAR-10 image classification usi
 │   ├── configs/config.yaml               # Batch selection & experiment config
 │   ├── notebooks/ml_engineering_lab_02.ipynb  # Dataset extension notebook
 │   └── report/                           # Lab report
+├── labs/lab03/
+│   ├── scripts/                          # DVC pipeline stage scripts
+│   ├── src/                              # Shared modules (data, model)
+│   └── report/                           # Lab report
+├── dvc.yaml                              # DVC pipeline definition
+├── params.yaml                           # Centralized parameters
 ```
 
 ### Setup
@@ -93,3 +99,25 @@ Configuration-driven batch selection to study how training data volume affects m
 - Automated multi-experiment runner with results aggregation
 - Performance comparison charts (matplotlib)
 - Same code quality standards as Lab 1 (isort, ruff, mypy all pass)
+
+---
+
+## Lab 3: DVC Pipeline Automation
+
+Refactored the training pipeline into three DVC-managed stages: `download_data` → `train` → `evaluate`. All parameters in `params.yaml`; `dvc repro` re-runs only invalidated stages.
+
+### Results
+| Metric    | Value  |
+|-----------|--------|
+| Test Loss | 0.8377 |
+| Accuracy  | 0.7127 |
+| Precision | 0.7117 |
+| Recall    | 0.7127 |
+| F1 Score  | 0.7075 |
+
+### Key Features
+- 3-stage DVC pipeline with explicit dependency tracking
+- `params.yaml` for centralized hyperparameter management
+- `dvc.lock` for full reproducibility
+- Metrics tracked via `dvc metrics show`
+- Code quality: isort, ruff, mypy all pass on all source files
