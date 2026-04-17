@@ -1,0 +1,125 @@
+schema: '2.0'
+stages:
+  download_data:
+    cmd: .venv/bin/python labs/lab03/scripts/download_data.py
+    deps:
+    - path: labs/lab03/scripts/download_data.py
+      hash: md5
+      md5: 42587f33181062942fd7835341d8c7e6
+      size: 1808
+    params:
+      params.yaml:
+        data.cifar_subdir: cifar-10-batches-py
+        data.data_dir: data
+        data.dataset_url: 
+          https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+    outs:
+    - path: data/cifar-10-batches-py
+      hash: md5
+      md5: 2c2c368a819f1df18fd0afa1c052c6c4.dir
+      size: 186214114
+      nfiles: 8
+  train:
+    cmd: PYTHONPATH=labs/lab03 .venv/bin/python labs/lab03/scripts/train.py
+    deps:
+    - path: data/cifar-10-batches-py
+      hash: md5
+      md5: 2c2c368a819f1df18fd0afa1c052c6c4.dir
+      size: 186214114
+      nfiles: 8
+    - path: labs/lab03/scripts/train.py
+      hash: md5
+      md5: 09c0ab46cbdaab22e3246b84199835ba
+      size: 4579
+    - path: labs/lab03/src/data.py
+      hash: md5
+      md5: b9be7a3d9d6ac754ec5802b5f774a626
+      size: 3483
+    - path: labs/lab03/src/model.py
+      hash: md5
+      md5: 9568beb2555ef64fff181fda00dec636
+      size: 1102
+    params:
+      params.yaml:
+        artifacts:
+          save_dir: artifacts/lab03
+          best_model_filename: best_model.pth
+          metrics_path: labs/lab03/metrics.json
+        data:
+          data_dir: data
+          dataset_url: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+          cifar_subdir: cifar-10-batches-py
+          test_batch: test_batch
+          train_batches:
+          - 1
+          - 2
+          - 3
+          - 4
+          val_batches:
+          - 5
+        model:
+          n_classes: 10
+        training:
+          batch_size: 128
+          num_workers: 4
+          num_epochs: 20
+          learning_rate: 0.001
+    outs:
+    - path: artifacts/lab03/best_model.pth
+      hash: md5
+      md5: 70bfe84a0889d745be5ef34b08e7f4f4
+      size: 8785461
+  evaluate:
+    cmd: PYTHONPATH=labs/lab03 .venv/bin/python labs/lab03/scripts/evaluate.py
+    deps:
+    - path: artifacts/lab03/best_model.pth
+      hash: md5
+      md5: 70bfe84a0889d745be5ef34b08e7f4f4
+      size: 8785461
+    - path: data/cifar-10-batches-py
+      hash: md5
+      md5: 2c2c368a819f1df18fd0afa1c052c6c4.dir
+      size: 186214114
+      nfiles: 8
+    - path: labs/lab03/scripts/evaluate.py
+      hash: md5
+      md5: fefc6946038eb5a682f10920f6ca4f19
+      size: 3765
+    - path: labs/lab03/src/data.py
+      hash: md5
+      md5: b9be7a3d9d6ac754ec5802b5f774a626
+      size: 3483
+    - path: labs/lab03/src/model.py
+      hash: md5
+      md5: 9568beb2555ef64fff181fda00dec636
+      size: 1102
+    params:
+      params.yaml:
+        artifacts:
+          save_dir: artifacts/lab03
+          best_model_filename: best_model.pth
+          metrics_path: labs/lab03/metrics.json
+        data:
+          data_dir: data
+          dataset_url: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+          cifar_subdir: cifar-10-batches-py
+          test_batch: test_batch
+          train_batches:
+          - 1
+          - 2
+          - 3
+          - 4
+          val_batches:
+          - 5
+        model:
+          n_classes: 10
+        training:
+          batch_size: 128
+          num_workers: 4
+          num_epochs: 20
+          learning_rate: 0.001
+    outs:
+    - path: labs/lab03/metrics.json
+      hash: md5
+      md5: 99364f86a9be5af27f7131fe8476e863
+      size: 106

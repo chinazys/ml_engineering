@@ -1,6 +1,6 @@
 stages:
   download_data:
-    cmd: python labs/lab03/scripts/download_data.py
+    cmd: .venv/bin/python labs/lab03/scripts/download_data.py
     deps:
       - labs/lab03/scripts/download_data.py
     params:
@@ -11,7 +11,7 @@ stages:
       - data/cifar-10-batches-py
 
   train:
-    cmd: PYTHONPATH=labs/lab03 python labs/lab03/scripts/train.py
+    cmd: PYTHONPATH=labs/lab03 .venv/bin/python labs/lab03/scripts/train.py
     deps:
       - labs/lab03/scripts/train.py
       - labs/lab03/src/data.py
@@ -26,7 +26,7 @@ stages:
       - artifacts/lab03/best_model.pth
 
   evaluate:
-    cmd: PYTHONPATH=labs/lab03 python labs/lab03/scripts/evaluate.py
+    cmd: PYTHONPATH=labs/lab03 .venv/bin/python labs/lab03/scripts/evaluate.py
     deps:
       - labs/lab03/scripts/evaluate.py
       - labs/lab03/src/data.py
