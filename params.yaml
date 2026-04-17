@@ -1,0 +1,23 @@
+# Lab 03 - DVC Pipeline Parameters
+
+data:
+  data_dir: data
+  dataset_url: "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+  cifar_subdir: cifar-10-batches-py
+  test_batch: test_batch
+  train_batches: [1, 2, 3, 4]
+  val_batches: [5]
+
+model:
+  n_classes: 10
+
+training:
+  batch_size: 128
+  num_workers: 4
+  num_epochs: 20
+  learning_rate: 0.001
+
+artifacts:
+  save_dir: artifacts/lab03
+  best_model_filename: best_model.pth
+  metrics_path: labs/lab03/metrics.json

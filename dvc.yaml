@@ -1,0 +1,43 @@
+stages:
+  download_data:
+    cmd: python labs/lab03/scripts/download_data.py
+    deps:
+      - labs/lab03/scripts/download_data.py
+    params:
+      - data.data_dir
+      - data.dataset_url
+      - data.cifar_subdir
+    outs:
+      - data/cifar-10-batches-py
+
+  train:
+    cmd: PYTHONPATH=labs/lab03 python labs/lab03/scripts/train.py
+    deps:
+      - labs/lab03/scripts/train.py
+      - labs/lab03/src/data.py
+      - labs/lab03/src/model.py
+      - data/cifar-10-batches-py
+    params:
+      - data
+      - model
+      - training
+      - artifacts
+    outs:
+      - artifacts/lab03/best_model.pth
+
+  evaluate:
+    cmd: PYTHONPATH=labs/lab03 python labs/lab03/scripts/evaluate.py
+    deps:
+      - labs/lab03/scripts/evaluate.py
+      - labs/lab03/src/data.py
+      - labs/lab03/src/model.py
+      - artifacts/lab03/best_model.pth
+      - data/cifar-10-batches-py
+    params:
+      - data
+      - model
+      - training
+      - artifacts
+    metrics:
+      - labs/lab03/metrics.json:
+          cache: false
