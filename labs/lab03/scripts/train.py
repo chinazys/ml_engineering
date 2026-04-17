@@ -8,11 +8,10 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import yaml
-from torch.utils.data import DataLoader
-from torchvision import transforms
-
 from src.data import create_data_loader, load_batches
 from src.model import CifarCNN
+from torch.utils.data import DataLoader
+from torchvision import transforms
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

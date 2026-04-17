@@ -10,11 +10,10 @@ import torch
 import torch.nn as nn
 import yaml
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-from torch.utils.data import DataLoader
-from torchvision import transforms
-
 from src.data import create_data_loader, load_test_set
 from src.model import CifarCNN
+from torch.utils.data import DataLoader
+from torchvision import transforms
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
