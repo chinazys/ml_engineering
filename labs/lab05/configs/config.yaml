@@ -1,0 +1,35 @@
+wandb:
+  project: cifar10-lab05
+  entity: ~
+  mode: offline
+
+data:
+  data_dir: data
+  cifar_subdir: cifar-10-batches-py
+  test_batch: test_batch
+
+model:
+  n_classes: 10
+
+training:
+  num_workers: 4
+  num_epochs: 8
+
+experiments:
+  - name: Run 1 - Default (lr=0.001, bs=128)
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
+    batch_size: 128
+    learning_rate: 0.001
+
+  - name: Run 2 - Lower LR (lr=0.0005, bs=128)
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
+    batch_size: 128
+    learning_rate: 0.0005
+
+  - name: Run 3 - Smaller Batch (lr=0.001, bs=64)
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
+    batch_size: 64
+    learning_rate: 0.001

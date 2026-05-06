@@ -1,0 +1,92 @@
+[
+  {
+    "run_name": "Run 1 - Default (lr=0.001, bs=128)",
+    "config": {
+      "batch_size": 128,
+      "learning_rate": 0.001,
+      "num_epochs": 8,
+      "train_batches": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "val_batches": [
+        5
+      ]
+    },
+    "metrics": {
+      "test_loss": 1.1332,
+      "accuracy": 0.593,
+      "precision": 0.5939,
+      "recall": 0.593,
+      "f1": 0.5823,
+      "best_val_loss": 1.1419,
+      "best_epoch": 8.0
+    },
+    "artifacts": {
+      "model": "artifacts/lab05/Run_1_-_Default_(lr=0.001,_bs=128)/best_model.pth",
+      "config": "artifacts/lab05/Run_1_-_Default_(lr=0.001,_bs=128)/resolved_config.json"
+    }
+  },
+  {
+    "run_name": "Run 2 - Lower LR (lr=0.0005, bs=128)",
+    "config": {
+      "batch_size": 128,
+      "learning_rate": 0.0005,
+      "num_epochs": 8,
+      "train_batches": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "val_batches": [
+        5
+      ]
+    },
+    "metrics": {
+      "test_loss": 0.9622,
+      "accuracy": 0.6585,
+      "precision": 0.6553,
+      "recall": 0.6585,
+      "f1": 0.651,
+      "best_val_loss": 0.9772,
+      "best_epoch": 8.0
+    },
+    "artifacts": {
+      "model": "artifacts/lab05/Run_2_-_Lower_LR_(lr=0.0005,_bs=128)/best_model.pth",
+      "config": "artifacts/lab05/Run_2_-_Lower_LR_(lr=0.0005,_bs=128)/resolved_config.json"
+    }
+  },
+  {
+    "run_name": "Run 3 - Smaller Batch (lr=0.001, bs=64)",
+    "config": {
+      "batch_size": 64,
+      "learning_rate": 0.001,
+      "num_epochs": 8,
+      "train_batches": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "val_batches": [
+        5
+      ]
+    },
+    "metrics": {
+      "test_loss": 1.041,
+      "accuracy": 0.627,
+      "precision": 0.6239,
+      "recall": 0.627,
+      "f1": 0.6144,
+      "best_val_loss": 1.0523,
+      "best_epoch": 8.0
+    },
+    "artifacts": {
+      "model": "artifacts/lab05/Run_3_-_Smaller_Batch_(lr=0.001,_bs=64)/best_model.pth",
+      "config": "artifacts/lab05/Run_3_-_Smaller_Batch_(lr=0.001,_bs=64)/resolved_config.json"
+    }
+  }
+]

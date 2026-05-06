@@ -28,3 +28,7 @@ mlflow.db-journal
 
 # pyenv
 .python-version
+
+# W&B offline and logs
+wandb/
+*.wandb

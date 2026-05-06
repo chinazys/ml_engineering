@@ -40,6 +40,12 @@ A complete deep learning training pipeline for CIFAR-10 image classification usi
 │   ├── src/                              # Shared modules (data, model)
 │   ├── results/                          # Run summaries and artifact validation output
 │   └── report/                           # Lab report
+├── labs/lab05/
+│   ├── configs/                          # W&B experiment configuration
+│   ├── scripts/                          # Experiment runner
+│   ├── src/                              # Shared modules (data, model)
+│   ├── results/                          # Run summaries
+│   └── report/                           # Lab report
 ├── dvc.yaml                              # DVC pipeline definition
 ├── params.yaml                           # Centralized parameters
 ```
@@ -149,3 +155,26 @@ Best run: `fd87a979795f49e7bba57237413b4246` (`exp_cifar10/run_lr_0.0005_bs_128`
 - Final test metrics logging (`accuracy`, `precision`, `recall`, `f1`, `test_loss`)
 - Model artifact logging and download-based validation
 - Hierarchical run names for easier comparison in MLflow UI
+
+---
+
+## Lab 5: Weights & Biases Experiment Tracking
+
+Integrated Weights & Biases into CIFAR-10 training with local offline logging, structured run naming, per-epoch metrics, and model artifact management.
+
+### Results (3 runs)
+| Run Name | Learning Rate | Batch Size | Accuracy | F1 | Test Loss |
+|---|---:|---:|---:|---:|---:|
+| Run 1 - Default (lr=0.001, bs=128) | 0.0010 | 128 | 0.5930 | 0.5823 | 1.1332 |
+| Run 2 - Lower LR (lr=0.0005, bs=128) | 0.0005 | 128 | 0.6585 | 0.6510 | 0.9622 |
+| Run 3 - Smaller Batch (lr=0.001, bs=64) | 0.0010 | 64 | 0.6270 | 0.6144 | 1.0410 |
+
+Best run: **Run 2 - Lower LR (lr=0.0005, bs=128)**
+
+### Key Features
+- W&B offline-first logging to `./wandb/` directory
+- Per-epoch metrics tracked via `wandb.log()` with step counter
+- Final test metrics and best validation loss logged per run
+- Model artifacts stored locally (`artifacts/lab05/<run_name>/best_model.pth`)
+- Structured run names encode hyperparameter decisions
+- Ready for cloud synchronization via `wandb sync` with API key
