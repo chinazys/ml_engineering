@@ -128,3 +128,29 @@ The downloaded artifact reproduces the same values as the original run summary f
 - Add automated hyperparameter sweeps and ranking by a target metric.
 - Register the best model in MLflow Model Registry and define a promotion workflow.
 - Export MLflow comparisons into CI artifacts for automatic reporting on each push.
+
+## 7. MLflow UI Screenshots
+
+### Experiment runs list
+
+All three runs logged under the `cifar10_lab04` experiment, showing status, duration, and source script.
+
+![Experiment runs list](screenshots/01_experiment_runs_list.png)
+
+### Runs comparison — parallel coordinates plot
+
+Parallel coordinates visualization comparing `batch_size`, `learning_rate`, and `train_loss` across all three runs. The run with `lr=0.0005, bs=128` achieves the lowest training loss.
+
+![Runs comparison chart](screenshots/02_runs_comparison_chart.png)
+
+### Runs comparison — parameters and metrics table
+
+Side-by-side comparison of all hyperparameters and final metrics. The best run (`exp_cifar10/run_lr_0.0005_bs_128`) achieves `accuracy=0.637`, `f1=0.625`, `best_val_loss=1.067`.
+
+![Runs parameters and metrics](screenshots/03_runs_params_metrics.png)
+
+### Best run overview
+
+Detailed view of the best run (`exp_cifar10/run_lr_0.0005_bs_128`, Run ID `fd87a979...`): all 10 logged metrics, all 10 parameters, and run metadata confirming a successful `Finished` status.
+
+![Best run overview](screenshots/04_best_run_overview.png)
