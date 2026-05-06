@@ -1,0 +1,35 @@
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  artifact_location: ./mlruns
+  experiment_name: cifar10_lab04
+
+data:
+  data_dir: data
+  cifar_subdir: cifar-10-batches-py
+  test_batch: test_batch
+
+model:
+  n_classes: 10
+
+training:
+  num_workers: 4
+  num_epochs: 8
+
+experiments:
+  - name: run_lr_0.001_bs_128
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
+    batch_size: 128
+    learning_rate: 0.001
+
+  - name: run_lr_0.0005_bs_128
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
+    batch_size: 128
+    learning_rate: 0.0005
+
+  - name: run_lr_0.001_bs_64
+    train_batches: [1, 2, 3, 4]
+    val_batches: [5]
+    batch_size: 64
+    learning_rate: 0.001

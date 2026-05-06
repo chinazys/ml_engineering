@@ -34,6 +34,12 @@ A complete deep learning training pipeline for CIFAR-10 image classification usi
 │   ├── scripts/                          # DVC pipeline stage scripts
 │   ├── src/                              # Shared modules (data, model)
 │   └── report/                           # Lab report
+├── labs/lab04/
+│   ├── configs/                          # MLflow experiment configuration
+│   ├── scripts/                          # Experiment runner and artifact validation
+│   ├── src/                              # Shared modules (data, model)
+│   ├── results/                          # Run summaries and artifact validation output
+│   └── report/                           # Lab report
 ├── dvc.yaml                              # DVC pipeline definition
 ├── params.yaml                           # Centralized parameters
 ```
@@ -121,3 +127,25 @@ Refactored the training pipeline into three DVC-managed stages: `download_data` 
 - `dvc.lock` for full reproducibility
 - Metrics tracked via `dvc metrics show`
 - Code quality: isort, ruff, mypy all pass on all source files
+
+---
+
+## Lab 4: MLflow Experiment Tracking
+
+Integrated MLflow into CIFAR-10 training with a local tracking server, multi-run experiment logging, and model artifact validation.
+
+### Results (3 runs)
+| Run Name | Learning Rate | Batch Size | Accuracy | F1 | Test Loss |
+|---|---:|---:|---:|---:|---:|
+| exp_cifar10/run_lr_0.001_bs_128 | 0.0010 | 128 | 0.6199 | 0.6128 | 1.0855 |
+| exp_cifar10/run_lr_0.0005_bs_128 | 0.0005 | 128 | 0.6366 | 0.6250 | 1.0519 |
+| exp_cifar10/run_lr_0.001_bs_64 | 0.0010 | 64 | 0.6186 | 0.6084 | 1.1256 |
+
+Best run: `fd87a979795f49e7bba57237413b4246` (`exp_cifar10/run_lr_0.0005_bs_128`)
+
+### Key Features
+- MLflow tracking server with SQLite backend and local artifact store
+- Per-epoch metric logging (`train_loss`, `val_loss`, `val_accuracy`)
+- Final test metrics logging (`accuracy`, `precision`, `recall`, `f1`, `test_loss`)
+- Model artifact logging and download-based validation
+- Hierarchical run names for easier comparison in MLflow UI

@@ -13,6 +13,9 @@ venv/
 # Artifacts and local data
 artifacts/
 data/
+mlruns/
+mlflow.db
+mlflow.db-journal
 
 # Tooling caches
 .mypy_cache/

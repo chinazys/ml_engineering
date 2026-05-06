@@ -1,0 +1,83 @@
+[
+  {
+    "run_id": "8051b7ed511343b4978c234dce73da85",
+    "run_name": "exp_cifar10/run_lr_0.001_bs_128",
+    "params": {
+      "batch_size": 128,
+      "learning_rate": 0.001,
+      "num_epochs": 8,
+      "train_batches": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "val_batches": [
+        5
+      ]
+    },
+    "metrics": {
+      "test_loss": 1.0855,
+      "accuracy": 0.6199,
+      "precision": 0.6312,
+      "recall": 0.6199,
+      "f1": 0.6128,
+      "best_val_loss": 1.0904,
+      "best_epoch": 8.0
+    }
+  },
+  {
+    "run_id": "fd87a979795f49e7bba57237413b4246",
+    "run_name": "exp_cifar10/run_lr_0.0005_bs_128",
+    "params": {
+      "batch_size": 128,
+      "learning_rate": 0.0005,
+      "num_epochs": 8,
+      "train_batches": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "val_batches": [
+        5
+      ]
+    },
+    "metrics": {
+      "test_loss": 1.0519,
+      "accuracy": 0.6366,
+      "precision": 0.6302,
+      "recall": 0.6366,
+      "f1": 0.625,
+      "best_val_loss": 1.0666,
+      "best_epoch": 8.0
+    }
+  },
+  {
+    "run_id": "039af0c10ef14b79b77d353a92ebd5fd",
+    "run_name": "exp_cifar10/run_lr_0.001_bs_64",
+    "params": {
+      "batch_size": 64,
+      "learning_rate": 0.001,
+      "num_epochs": 8,
+      "train_batches": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "val_batches": [
+        5
+      ]
+    },
+    "metrics": {
+      "test_loss": 1.1256,
+      "accuracy": 0.6186,
+      "precision": 0.6104,
+      "recall": 0.6186,
+      "f1": 0.6084,
+      "best_val_loss": 1.1266,
+      "best_epoch": 8.0
+    }
+  }
+]
