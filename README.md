@@ -46,6 +46,11 @@ A complete deep learning training pipeline for CIFAR-10 image classification usi
 │   ├── src/                              # Shared modules (data, model)
 │   ├── results/                          # Run summaries
 │   └── report/                           # Lab report
+├── labs/lab06/
+│   ├── app.py                            # Streamlit dashboard entry point
+│   ├── configs/config.yaml               # Dashboard configuration
+│   ├── src/                              # Dashboard modules (data, model, inference, gradcam, viz, ui)
+│   └── report/                           # Lab report with screenshots
 ├── dvc.yaml                              # DVC pipeline definition
 ├── params.yaml                           # Centralized parameters
 ```
@@ -178,3 +183,22 @@ Best run: **Run 2 - Lower LR (lr=0.0005, bs=128)**
 - Model artifacts stored locally (`artifacts/lab05/<run_name>/best_model.pth`)
 - Structured run names encode hyperparameter decisions
 - Ready for cloud synchronization via `wandb sync` with API key
+
+---
+
+## Lab 6: Interactive Analysis Dashboard
+
+Streamlit dashboard for visual inspection of the CIFAR-10 pipeline: dataset exploration, per-run error analysis from MLflow, and Grad-CAM explainability.
+
+### Key Features
+- Dataset Exploration tab: split sizes, class distribution chart, per-class sample viewer
+- Error Analysis tab: run selection from MLflow, confusion matrix, per-class error bars, misclassified sample gallery
+- Prediction & Explainability tab: single-image inference with probability chart and Grad-CAM overlay
+- `st.cache_data` / `st.cache_resource` to avoid recomputation on widget interaction
+- Grad-CAM hooks on `features[8]` (last conv layer of CifarCNN) with bilinear upsampling to 32×32
+- Modular layout: `app.py` → `src/ui/` tabs → `src/` utilities
+
+### Running
+```bash
+streamlit run labs/lab06/app.py
+```

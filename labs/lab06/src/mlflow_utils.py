@@ -75,6 +75,14 @@ def load_model_from_run(
     try:
         artifacts = client.list_artifacts(run_id)
         pth_artifacts = [a for a in artifacts if a.path.endswith(".pth")]
+
+        # Look one level deeper if not found at root
+        if not pth_artifacts:
+            for a in artifacts:
+                if a.is_dir:
+                    sub = client.list_artifacts(run_id, a.path)
+                    pth_artifacts.extend([s for s in sub if s.path.endswith(".pth")])
+
         if not pth_artifacts:
             logger.warning("No .pth artifact found for run %s", run_id)
             return None
