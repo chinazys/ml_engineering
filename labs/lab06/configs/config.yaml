@@ -1,0 +1,18 @@
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: cifar10_lab04
+
+data:
+  data_dir: data
+  cifar_subdir: cifar-10-batches-py
+  test_batch: test_batch
+  train_batches: [1, 2, 3, 4]
+  val_batches: [5]
+
+model:
+  n_classes: 10
+
+app:
+  page_title: CIFAR-10 Dashboard
+  inference_batch_size: 256
+  num_workers: 0
